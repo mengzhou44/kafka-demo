@@ -5,11 +5,11 @@
     "start": "ts-node-dev src/index.ts"
   },
   "dependencies": {
-    "kafkajs": "^2.2.4",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "kafkajs": "^2.2.4"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.0"
   }
 }

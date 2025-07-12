@@ -1,11 +1,13 @@
-import { Kafka } from 'kafkajs';
+import { Kafka, Partitioners } from 'kafkajs';
 
 const kafka = new Kafka({
   clientId: 'producer-service',
   brokers: ['host.docker.internal:9092']
 });
 
-const producer = kafka.producer();
+const producer = kafka.producer({
+  createPartitioner: Partitioners.LegacyPartitioner,
+})
 
 async function produceMessages() {
   await producer.connect();

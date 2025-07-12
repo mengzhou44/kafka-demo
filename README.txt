@@ -1,4 +1,17 @@
-docker-compose down
-docker volume rm kafka-data kafka-demo_kafka-data
+docker-compose down -v
+docker volume rm kafka-demo_kafka-data
 
-docker run --rm -v kafka-data:/var/lib/kafka/data -v "C:\Users\cb30z\OneDrive - Alberta Energy Regulator\Desktop\technology\kafka-demo\kafka.properties:/etc/kafka/kafka.properties" confluentinc/cp-kafka:7.5.0 kafka-storage format --cluster-id sbgNWajRTW6kw1kI9m_6gg --ignore-formatted --config /etc/kafka/kafka.properties
+docker-compose up -d --build
+
+docker logs kafka --tail 100
+
+
+docker exec -it kafka sh -c "cat /etc/kafka/kafka.properties"
+
+
+docker exec -it kafka bash
+
+docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --list
+
+
+kafka-topics --bootstrap-server localhost:9092 --create --topic test-topic --partitions 1 --replication-factor 1
