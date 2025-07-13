@@ -18,7 +18,7 @@ async function produceMessages() {
     const order = new Order(123, 'Alice', 99.99, new Date().toISOString());
     
     await producer.send({
-      topic: 'test-topic',
+      topic: 'order-created',
       messages: [{ value:  JSON.stringify(order) }],
     });
     console.log(`✅ Sent: ${order.orderId}`);
