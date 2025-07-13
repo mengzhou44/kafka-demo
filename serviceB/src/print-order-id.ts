@@ -34,10 +34,22 @@ export async function printOrderId() {
   })
 }
 
-const processMessage = async (message: any, retries = 3) => {
+async function hasOrderBeProcessed(orderId: number) {
+  return Promise.resolve(true)
+}
+
+async function processMessage(message: any, retries = 3) {
   while (retries--) {
     try {
       const order = Order.fromJson(message.value.toString())
+
+      if (await hasOrderBeProcessed(order.orderId)) {
+        console.log(
+          `🔁 Duplicate Order ID detected: ${order.orderId}, skipping.`
+        )
+        return true
+      }
+
       console.log(`🆔 Order ID: ${order.orderId}`)
       return true
     } catch (err) {
