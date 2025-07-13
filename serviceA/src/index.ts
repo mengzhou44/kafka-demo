@@ -1,4 +1,5 @@
 import { Kafka, Partitioners } from 'kafkajs';
+import { Order } from './models/Order';
 
 const kafka = new Kafka({
   clientId: 'producer-service',
@@ -13,12 +14,14 @@ async function produceMessages() {
   await producer.connect();
 
   setInterval(async () => {
-    const message = `Message from Producer at ${new Date().toISOString()}`;
+
+    const order = new Order(123, 'Alice', 99.99, new Date().toISOString());
+    
     await producer.send({
       topic: 'test-topic',
-      messages: [{ value: message }],
+      messages: [{ value:  JSON.stringify(order) }],
     });
-    console.log(`✅ Sent: ${message}`);
+    console.log(`✅ Sent: ${order.orderId}`);
   }, 5000);
 }
 
