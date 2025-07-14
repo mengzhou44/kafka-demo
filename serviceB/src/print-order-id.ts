@@ -35,7 +35,7 @@ export async function printOrderId() {
 }
 
 async function hasOrderBeProcessed(orderId: number) {
-  return Promise.resolve(true)
+  return Promise.resolve(false)
 }
 
 async function processMessage(message: any, retries = 3) {

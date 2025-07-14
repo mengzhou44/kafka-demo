@@ -14,4 +14,6 @@ docker exec -it kafka bash
 docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --list
 
 
-kafka-topics --bootstrap-server localhost:9092 --create --topic test-topic --partitions 1 --replication-factor 1
+
+kafka-topics --bootstrap-server localhost:9092 \
+  --alter --topic order-created --partitions 3
